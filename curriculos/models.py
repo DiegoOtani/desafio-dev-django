@@ -1,14 +1,19 @@
 from django.db import models
 
 class PersonalInfo(models.Model):
-  name = models.CharField(max_length=100)
+  first_name = models.CharField(max_length=20)
+  last_name = models.CharField(max_length=20)
   birth_date = models.DateField()
-  email = models.EmailField(unique=True)
-  phone = models.CharField(max_length=15)
-  address = models.TextField()
 
   class Meta:
     ordering = ['id']
+
+class ContactInfo(models.Model):
+    personal_info = models.OneToOneField(PersonalInfo, related_name='contact_info', on_delete=models.CASCADE)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=25)
+    address = models.TextField()
+    linkedin = models.CharField(max_length=100)
 
 class WorkExperience(models.Model):
   position = models.CharField(max_length=100)
