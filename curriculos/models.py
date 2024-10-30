@@ -7,6 +7,9 @@ class PersonalInfo(models.Model):
   phone = models.CharField(max_length=15)
   address = models.TextField()
 
+  class Meta:
+    ordering = ['id']
+
 class WorkExperience(models.Model):
   position = models.CharField(max_length=100)
   company = models.CharField(max_length=100)
